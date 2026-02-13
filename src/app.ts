@@ -1,3 +1,13 @@
-import fastify from 'fastify';
+import fastify from "fastify";
+import { env } from "./env";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "../prisma/generated/prisma/client";
+
+const connectionString = `${env.DATABASE_URL}`;
+
+const adapter = new PrismaPg({ connectionString });
+const prisma = new PrismaClient({ adapter });
 
 export const app = fastify();
+
+
